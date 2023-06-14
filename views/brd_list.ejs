@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 목록페이지</title>
+</head>
+<body>
+    <div class="listWrap">
+        <% for(let i=0; i<data.length; i++){%>
+            <div class="lists">
+                <div><%- data[i].num %></div>
+                <a href="/board/detail/<%- data[i].num %>">
+                    <h2><%- data[i].title %></h2>
+                    <p><%- data[i].author %></p>
+                </a>
+            </div>
+        <% } %>
+    </div>
+
+     <!-- 페이징 번호 생성된 구간  처음 이전 1,2,3 다음 마지막-->
+     
+    
+    <a href="/board/insert">게시글 등록페이지</a>
+</body>
+</html>
