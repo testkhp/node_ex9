@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 목록페이지</title>
+    <style>
+         ul,ol,li {list-style:none;}
+         a { text-decoration:none; color:#000;}
+         .listWrap {width:1200px; display:flex; flex-wrap:wrap; }
+         .lists { width:300px; margin:30px; border:1px solid #000;}
+
+         .paging { display:flex;}
+         .paging li { margin:0 20px;}
+         .highlight a { color:red;}
+    </style>
 </head>
 <body>
     <div class="listWrap">
@@ -19,6 +29,42 @@
     </div>
 
      <!-- 페이징 번호 생성된 구간  처음 이전 1,2,3 다음 마지막-->
+     <ul class="paging">
+        <!-- 1페이지로 이동하는 작업-->
+        <% if(pageNumber <= 1){ %>
+            <li>처음</li>
+        <% } else { %>
+            <!-- /boardtest?page=1 -->
+            <li><a href="?page=1">처음</a></li>
+        <% } %>
+
+        <!-- 이전버튼 생성작업 페이지 시작번호가 그룹의 총갯수보다 크다면 이전버튼 생성-->
+        <% if(blockStart > totalBlock){ %>
+            <li><a href="?page=<%- blockStart - 1 %>">이전</a></li>
+        <% } %> 
+
+        <!-- 페이지 시작번호값 부터 끝번호까지 li태그 생성-->
+        <% for(let i = blockStart; i <= blockEnd; i++ ) { %>
+            <!-- 현재 보고있는 페이지 번호인 경우 색상 활성화-->
+            <% if(pageNumber == i) { %>
+                <li class="highlight"><a href="?page=<%- i %>"><%- i %></a></li>
+            <% } else { %>
+                <li><a href="?page=<%- i %>"><%- i %></a></li>
+            <% } %>
+        <% } %>
+
+        <!-- 다음버튼 생성작업 -->
+        <% if(blockNum < totalBlock) { %>
+            <li><a href="?page=<%- blockEnd + 1 %>">다음</a></li>
+        <% } %>
+
+        <!-- 페이지 마지막 번호로 이동 -->
+        <% if(pageNumber >= totalPaging) { %>
+            <li>마지막</li>
+        <% } else { %>
+            <li><a href="?page=<%- totalPaging %>">마지막</a></li>
+        <% } %>
+     </ul>
      
     
     <a href="/board/insert">게시글 등록페이지</a>

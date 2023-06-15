@@ -7,7 +7,7 @@
 </head>
 <body>
 
-     <form id="upload" action="/dbupdate" method="post" enctype="multipart/form-data">
+     <form id="upload" action="/dbupdate" method="post">
 
         <input type="hidden" name="num" value="<%- data.num %>">
         <input type="text" name="title" value="<%- data.title %>" required>
@@ -15,6 +15,7 @@
         <textarea name="content" required><%- data.content %></textarea>
 
         <button type="submit">게시글 수정완료</button>
+        <a href="/board/list">취소</a>
    </form>
 </body>
 </html>
